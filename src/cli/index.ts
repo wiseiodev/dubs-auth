@@ -76,6 +76,9 @@ const command = new Command()
   .description(
     'Quickstart and scaffolding CLI for @wiseiodev/dubs-auth integrations',
   )
+  .showHelpAfterError()
+  .showSuggestionAfterError()
+  .helpCommand('help [command]', 'Display help for command')
   .version(packageJson.version)
   .addOption(
     new Option('--cwd <path>', 'Target app path to modify').default('.'),

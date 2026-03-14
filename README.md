@@ -2,16 +2,6 @@
 
 All-in-one Better Auth + Stripe + Drizzle toolkit for Next.js App Router apps.
 
-## Stack
-
-- Next.js (App Router)
-- Better Auth
-- Stripe
-- Drizzle ORM
-- Zod
-- Biome
-- Vitest (unit, integration, browser UI)
-
 ## Requirements
 
 - Node `24` (`.nvmrc` included)
@@ -23,23 +13,23 @@ All-in-one Better Auth + Stripe + Drizzle toolkit for Next.js App Router apps.
 pnpm add @wiseiodev/dubs-auth
 ```
 
-## Quickstart CLI
+To use the CLI in a consuming app, run via pnpm exec:
 
 ```bash
-# scaffold env template, config, and route handlers
-pnpm dubs-auth init
-
-# generate local schema ownership files
-pnpm dubs-auth generate schema
-
-# copy customizable UI source
-pnpm dubs-auth add ui
-
-# copy customizable hooks source
-pnpm dubs-auth add hooks
+pnpm exec dubs-auth --help
 ```
 
-## Runtime Usage
+## Quick Start
+
+```bash
+# scaffold env template, config, and Next route handlers
+pnpm exec dubs-auth init
+
+# generate schema ownership files for your host app
+pnpm exec dubs-auth generate schema
+```
+
+## Runtime Example
 
 ```ts
 import {
@@ -75,13 +65,48 @@ export const auth = createDubsAuth({
 export const { GET, POST } = createAuthRouteHandlers(auth);
 ```
 
-## Scripts
+## Docs
+
+- [Imports and API surface](./docs/usage/imports.md)
+- [Environment variables](./docs/usage/environment.md)
+- [CLI reference (`--help`, commands, flags)](./docs/usage/cli.md)
+- [Integration recipes](./docs/usage/integration-recipes.md)
+
+## CLI Help
+
+```bash
+pnpm exec dubs-auth --help
+pnpm exec dubs-auth help init
+```
+
+## Local Development
 
 ```bash
 pnpm lint
+pnpm run format:check
 pnpm typecheck
-pnpm test:unit
-pnpm test:integration
-pnpm test:ui
-pnpm refresh-deps
+pnpm test
+pnpm build
+pnpm run quality
 ```
+
+For CLI development inside this repository:
+
+```bash
+# run source directly
+node --import tsx src/cli/index.ts --help
+
+# run built artifact
+node dist/cli/index.js --help
+```
+
+## Commit Convention
+
+This repo uses Conventional Commits with a required scope.
+
+- Pass: `feat(cli): add --help coverage`
+- Fail: `feat: add --help coverage`
+
+Husky runs commitlint on `commit-msg` locally.
+
+Run `pnpm install` once per clone to install hooks via `prepare`.
