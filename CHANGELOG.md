@@ -1,3 +1,13 @@
+## [0.3.0](https://github.com/wiseiodev/dubs-auth/compare/v0.2.3...v0.3.0) (2026-03-14)
+
+### Features
+
+* **cli:** scaffold complete auth schema in generate command ([33eb134](https://github.com/wiseiodev/dubs-auth/commit/33eb1342e40f8c630ce95991889122ff70a2b7fa))
+
+### Bug Fixes
+
+* **cli:** format schema scaffold integration test ([bf19722](https://github.com/wiseiodev/dubs-auth/commit/bf197222f58a4dc5e6ea441ff9fa60a081827bec))
+
 ## [0.2.3](https://github.com/wiseiodev/dubs-auth/compare/v0.2.2...v0.2.3) (2026-03-14)
 
 ### Bug Fixes
