@@ -1,0 +1,90 @@
+{
+  "name": "@wiseiodev/dubs-auth",
+  "version": "0.1.0",
+  "description": "All-in-one Better Auth + Stripe + Drizzle toolkit for Next.js App Router",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "dubs-auth": "./dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "pnpm run build:lib && pnpm run build:cli",
+    "build:lib": "tsup src/index.ts --format esm,cjs --dts --sourcemap --clean",
+    "build:cli": "tsup src/cli/index.ts --format esm --target node24 --out-dir dist/cli --clean false && node ./scripts/add-shebang.mjs ./dist/cli/index.js",
+    "dev": "pnpm run build:lib --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "pnpm run test:unit && pnpm run test:integration && pnpm run test:ui",
+    "test:unit": "vitest --config vitest.unit.config.ts --run",
+    "test:integration": "vitest --config vitest.integration.config.ts --run",
+    "test:ui": "vitest --config vitest.ui.config.ts --run",
+    "test:watch": "vitest",
+    "refresh-deps": "pnpm up --latest",
+    "prepublish:lockfile": "node ./scripts/prepublish-lockfile-check.mjs",
+    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run prepublish:lockfile"
+  },
+  "keywords": [
+    "nextjs",
+    "better-auth",
+    "stripe",
+    "drizzle",
+    "saas",
+    "authentication",
+    "subscriptions"
+  ],
+  "author": "wiseiodev",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "packageManager": "pnpm@10.31.0",
+  "dependencies": {
+    "@better-auth/stripe": "^1.5.5",
+    "better-auth": "^1.5.5",
+    "clsx": "^2.1.1",
+    "commander": "^14.0.3",
+    "drizzle-orm": "^0.45.1",
+    "next": "^16.1.6",
+    "pg": "^8.20.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "stripe": "^20.4.1",
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.7",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitest/browser": "^4.1.0",
+    "@vitest/browser-playwright": "^4.1.0",
+    "@vitest/coverage-v8": "^4.1.0",
+    "drizzle-kit": "^0.31.9",
+    "playwright": "^1.58.2",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}
