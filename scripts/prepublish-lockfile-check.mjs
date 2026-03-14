@@ -1,21 +1,15 @@
 import { execSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
 
-const lockfilePath = new URL('../pnpm-lock.yaml', import.meta.url);
-const before = readFileSync(lockfilePath, 'utf8');
-
-execSync('COREPACK_ENABLE_PROJECT_SPEC=0 pnpm run refresh-deps', {
-  stdio: 'inherit',
-});
-
-const after = readFileSync(lockfilePath, 'utf8');
-
-if (before !== after) {
+try {
+  execSync('COREPACK_ENABLE_PROJECT_SPEC=0 pnpm install --frozen-lockfile --ignore-scripts', {
+    stdio: 'inherit',
+  });
+} catch (error) {
   console.error(
     [
-      'Dependency refresh changed pnpm-lock.yaml.',
-      'Commit the refreshed lockfile before publishing.',
+      'Lockfile validation failed.',
+      'Run `pnpm install` and commit the updated pnpm-lock.yaml before publishing.',
     ].join(' '),
   );
-  process.exit(1);
+  throw error;
 }
