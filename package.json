@@ -17,6 +17,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wiseiodev/dubs-auth"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
