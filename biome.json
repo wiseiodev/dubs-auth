@@ -27,6 +27,15 @@
     }
   },
   "files": {
-    "includes": ["**", "!dist", "!coverage", "!.agents", "!.claude"]
+    "includes": [
+      "**",
+      "!dist",
+      "!coverage",
+      "!.agents",
+      "!.claude",
+      "!**/.next",
+      "!**/.data",
+      "!**/next-env.d.ts"
+    ]
   }
 }

@@ -72,6 +72,35 @@ export const { GET, POST } = createAuthRouteHandlers(auth);
 - [CLI reference (`--help`, commands, flags)](./docs/usage/cli.md)
 - [Integration recipes](./docs/usage/integration-recipes.md)
 
+## Example App
+
+A runnable Next.js App Router sample lives at:
+
+- [`examples/next-app-router`](./examples/next-app-router/README.md)
+
+This example currently installs the published npm package and commits its own
+PGlite + Drizzle migration files for immediate local verification.
+
+`dubs-auth generate schema` in the published package now scaffolds the full
+auth table set (`account`, `verification`, `invitation` included).
+
+### Example Smoke Test
+
+```bash
+pnpm --dir examples/next-app-router install
+pnpm --dir examples/next-app-router exec dubs-auth generate schema --cwd .
+cp examples/next-app-router/.env.example examples/next-app-router/.env
+pnpm --dir examples/next-app-router db:migrate
+PORT=4000 pnpm --dir examples/next-app-router dev
+```
+
+Then verify:
+
+1. Sign up at `/sign-up`
+2. Sign in at `/sign-in`
+3. Confirm session state at `/dashboard`
+4. Open `/billing` (without Stripe envs this should return a clear "not configured" response)
+
 ## CLI Help
 
 ```bash

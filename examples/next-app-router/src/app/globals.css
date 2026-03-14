@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top left, #f4f7ff, #f7fff6 45%, #fff);
+  color: #111827;
+}
+
+a {
+  color: inherit;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 2rem 1rem 3rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #dbe3f1;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(12, 34, 66, 0.06);
+}
+
+.stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
