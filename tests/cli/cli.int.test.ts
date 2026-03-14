@@ -56,7 +56,9 @@ describe('dubs-auth cli', () => {
       path.join(tempDirectory, 'src/db/dubs-auth-schema.ts'),
       'utf8',
     );
-    expect(generatedSchema).toContain("export const account = pgTable('account'");
+    expect(generatedSchema).toContain(
+      "export const account = pgTable('account'",
+    );
     expect(generatedSchema).toContain(
       "export const verification = pgTable('verification'",
     );
@@ -68,7 +70,9 @@ describe('dubs-auth cli', () => {
       path.join(tempDirectory, 'drizzle/0001_dubs_auth.sql'),
       'utf8',
     );
-    expect(generatedMigration).toContain('CREATE TABLE IF NOT EXISTS "account"');
+    expect(generatedMigration).toContain(
+      'CREATE TABLE IF NOT EXISTS "account"',
+    );
     expect(generatedMigration).toContain(
       'CREATE TABLE IF NOT EXISTS "verification"',
     );
