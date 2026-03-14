@@ -10,27 +10,7 @@ CREATE TABLE IF NOT EXISTS "user" (
   "deleted_at" timestamptz
 );
 
-CREATE TABLE IF NOT EXISTS "organization" (
-  "id" text PRIMARY KEY,
-  "name" text NOT NULL,
-  "slug" text NOT NULL UNIQUE,
-  "logo" text,
-  "stripe_customer_id" text,
-  "metadata" jsonb,
-  "created_at" timestamptz NOT NULL DEFAULT now(),
-  "updated_at" timestamptz NOT NULL DEFAULT now(),
-  "deleted_at" timestamptz
-);
-
-CREATE TABLE IF NOT EXISTS "member" (
-  "id" text PRIMARY KEY,
-  "organization_id" text NOT NULL REFERENCES "organization" ("id"),
-  "user_id" text NOT NULL REFERENCES "user" ("id"),
-  "role" text NOT NULL DEFAULT 'member',
-  "created_at" timestamptz NOT NULL DEFAULT now(),
-  "updated_at" timestamptz NOT NULL DEFAULT now(),
-  "deleted_at" timestamptz
-);
+--> statement-breakpoint
 
 CREATE TABLE IF NOT EXISTS "session" (
   "id" text PRIMARY KEY,
@@ -44,6 +24,80 @@ CREATE TABLE IF NOT EXISTS "session" (
   "updated_at" timestamptz NOT NULL DEFAULT now(),
   "deleted_at" timestamptz
 );
+
+--> statement-breakpoint
+
+CREATE TABLE IF NOT EXISTS "account" (
+  "id" text PRIMARY KEY,
+  "user_id" text NOT NULL REFERENCES "user" ("id"),
+  "provider_id" text NOT NULL,
+  "account_id" text NOT NULL,
+  "access_token" text,
+  "refresh_token" text,
+  "access_token_expires_at" timestamptz,
+  "refresh_token_expires_at" timestamptz,
+  "scope" text,
+  "id_token" text,
+  "password" text,
+  "created_at" timestamptz NOT NULL DEFAULT now(),
+  "updated_at" timestamptz NOT NULL DEFAULT now(),
+  "deleted_at" timestamptz
+);
+
+--> statement-breakpoint
+
+CREATE TABLE IF NOT EXISTS "verification" (
+  "id" text PRIMARY KEY,
+  "identifier" text NOT NULL,
+  "value" text NOT NULL,
+  "expires_at" timestamptz NOT NULL,
+  "created_at" timestamptz NOT NULL DEFAULT now(),
+  "updated_at" timestamptz NOT NULL DEFAULT now(),
+  "deleted_at" timestamptz
+);
+
+--> statement-breakpoint
+
+CREATE TABLE IF NOT EXISTS "organization" (
+  "id" text PRIMARY KEY,
+  "name" text NOT NULL,
+  "slug" text NOT NULL UNIQUE,
+  "logo" text,
+  "metadata" jsonb,
+  "stripe_customer_id" text,
+  "created_at" timestamptz NOT NULL DEFAULT now(),
+  "updated_at" timestamptz NOT NULL DEFAULT now(),
+  "deleted_at" timestamptz
+);
+
+--> statement-breakpoint
+
+CREATE TABLE IF NOT EXISTS "member" (
+  "id" text PRIMARY KEY,
+  "organization_id" text NOT NULL REFERENCES "organization" ("id"),
+  "user_id" text NOT NULL REFERENCES "user" ("id"),
+  "role" text NOT NULL DEFAULT 'member',
+  "created_at" timestamptz NOT NULL DEFAULT now(),
+  "updated_at" timestamptz NOT NULL DEFAULT now(),
+  "deleted_at" timestamptz
+);
+
+--> statement-breakpoint
+
+CREATE TABLE IF NOT EXISTS "invitation" (
+  "id" text PRIMARY KEY,
+  "organization_id" text NOT NULL REFERENCES "organization" ("id"),
+  "email" text NOT NULL,
+  "role" text NOT NULL DEFAULT 'member',
+  "status" text NOT NULL DEFAULT 'pending',
+  "expires_at" timestamptz NOT NULL,
+  "inviter_id" text REFERENCES "user" ("id"),
+  "created_at" timestamptz NOT NULL DEFAULT now(),
+  "updated_at" timestamptz NOT NULL DEFAULT now(),
+  "deleted_at" timestamptz
+);
+
+--> statement-breakpoint
 
 CREATE TABLE IF NOT EXISTS "subscription" (
   "id" text PRIMARY KEY,
@@ -66,3 +120,5 @@ CREATE TABLE IF NOT EXISTS "subscription" (
   "updated_at" timestamptz NOT NULL DEFAULT now(),
   "deleted_at" timestamptz
 );
+
+--> statement-breakpoint

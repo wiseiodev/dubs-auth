@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process';
-import { access, mkdtemp, rm } from 'node:fs/promises';
+import { access, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -51,5 +51,29 @@ describe('dubs-auth cli', () => {
     await expect(
       access(path.join(tempDirectory, 'drizzle/0001_dubs_auth.sql')),
     ).resolves.toBeUndefined();
+
+    const generatedSchema = await readFile(
+      path.join(tempDirectory, 'src/db/dubs-auth-schema.ts'),
+      'utf8',
+    );
+    expect(generatedSchema).toContain("export const account = pgTable('account'");
+    expect(generatedSchema).toContain(
+      "export const verification = pgTable('verification'",
+    );
+    expect(generatedSchema).toContain(
+      "export const invitation = pgTable('invitation'",
+    );
+
+    const generatedMigration = await readFile(
+      path.join(tempDirectory, 'drizzle/0001_dubs_auth.sql'),
+      'utf8',
+    );
+    expect(generatedMigration).toContain('CREATE TABLE IF NOT EXISTS "account"');
+    expect(generatedMigration).toContain(
+      'CREATE TABLE IF NOT EXISTS "verification"',
+    );
+    expect(generatedMigration).toContain(
+      'CREATE TABLE IF NOT EXISTS "invitation"',
+    );
   });
 });

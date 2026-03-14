@@ -42,13 +42,46 @@ export const session = pgTable('session', {
   deletedAt,
 });
 
+export const account = pgTable('account', {
+  id: text('id').primaryKey(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id),
+  providerId: text('provider_id').notNull(),
+  accountId: text('account_id').notNull(),
+  accessToken: text('access_token'),
+  refreshToken: text('refresh_token'),
+  accessTokenExpiresAt: timestamp('access_token_expires_at', {
+    withTimezone: true,
+  }),
+  refreshTokenExpiresAt: timestamp('refresh_token_expires_at', {
+    withTimezone: true,
+  }),
+  scope: text('scope'),
+  idToken: text('id_token'),
+  password: text('password'),
+  createdAt,
+  updatedAt,
+  deletedAt,
+});
+
+export const verification = pgTable('verification', {
+  id: text('id').primaryKey(),
+  identifier: text('identifier').notNull(),
+  value: text('value').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  createdAt,
+  updatedAt,
+  deletedAt,
+});
+
 export const organization = pgTable('organization', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
   slug: text('slug').notNull().unique(),
   logo: text('logo'),
-  stripeCustomerId: text('stripe_customer_id'),
   metadata: jsonb('metadata').$type<Record<string, unknown>>(),
+  stripeCustomerId: text('stripe_customer_id'),
   createdAt,
   updatedAt,
   deletedAt,
@@ -63,6 +96,21 @@ export const member = pgTable('member', {
     .notNull()
     .references(() => user.id),
   role: text('role').notNull().default('member'),
+  createdAt,
+  updatedAt,
+  deletedAt,
+});
+
+export const invitation = pgTable('invitation', {
+  id: text('id').primaryKey(),
+  organizationId: text('organization_id')
+    .notNull()
+    .references(() => organization.id),
+  email: text('email').notNull(),
+  role: text('role').notNull().default('member'),
+  status: text('status').notNull().default('pending'),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  inviterId: text('inviter_id').references(() => user.id),
   createdAt,
   updatedAt,
   deletedAt,
@@ -91,3 +139,14 @@ export const subscription = pgTable('subscription', {
   updatedAt,
   deletedAt,
 });
+
+export const dubsAuthSchema = {
+  account,
+  invitation,
+  member,
+  organization,
+  session,
+  subscription,
+  user,
+  verification,
+};
