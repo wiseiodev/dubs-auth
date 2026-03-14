@@ -1,3 +1,9 @@
+## [0.2.3](https://github.com/wiseiodev/dubs-auth/compare/v0.2.2...v0.2.3) (2026-03-14)
+
+### Bug Fixes
+
+* **release:** add repository metadata for npm provenance ([49b1397](https://github.com/wiseiodev/dubs-auth/commit/49b139745885c4710e5d14542ad2995737d0e56c))
+
 ## [0.2.2](https://github.com/wiseiodev/dubs-auth/compare/v0.2.1...v0.2.2) (2026-03-14)
 
 ### Bug Fixes
