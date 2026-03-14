@@ -45,35 +45,35 @@ export const DubsSignInForm = ({
 
   return (
     <form className={cn('grid gap-4', className)} onSubmit={handleSubmit}>
-      <label className="grid gap-1 text-sm font-medium">
+      <label className='grid gap-1 text-sm font-medium'>
         Email
         <input
-          className="h-10 rounded-md border px-3"
-          name="email"
-          type="email"
-          autoComplete="email"
+          className='h-10 rounded-md border px-3'
+          name='email'
+          type='email'
+          autoComplete='email'
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
       </label>
-      <label className="grid gap-1 text-sm font-medium">
+      <label className='grid gap-1 text-sm font-medium'>
         Password
         <input
-          className="h-10 rounded-md border px-3"
-          name="password"
-          type="password"
-          autoComplete="current-password"
+          className='h-10 rounded-md border px-3'
+          name='password'
+          type='password'
+          autoComplete='current-password'
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
       </label>
-      {error ? <p className="text-sm text-red-600">{error}</p> : null}
+      {error ? <p className='text-sm text-red-600'>{error}</p> : null}
       <button
-        className="inline-flex h-10 items-center justify-center rounded-md bg-black px-4 text-sm font-medium text-white disabled:opacity-60"
+        className='inline-flex h-10 items-center justify-center rounded-md bg-black px-4 text-sm font-medium text-white disabled:opacity-60'
         disabled={isPending}
-        type="submit"
+        type='submit'
       >
         {isPending ? 'Signing in...' : submitLabel}
       </button>

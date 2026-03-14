@@ -10,7 +10,7 @@ export interface LoginCardProps {
 }
 
 export const LoginCard = ({ onSubmit }: LoginCardProps) => (
-  <Card className="mx-auto w-full max-w-md">
+  <Card className='mx-auto w-full max-w-md'>
     <CardHeader>
       <CardTitle>Welcome back</CardTitle>
     </CardHeader>

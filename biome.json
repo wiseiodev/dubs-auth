@@ -15,10 +15,18 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
+      "jsxQuoteStyle": "single",
       "semicolons": "always"
     }
   },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
   "files": {
-    "includes": ["**", "!dist", "!coverage"]
+    "includes": ["**", "!dist", "!coverage", "!.agents", "!.claude"]
   }
 }

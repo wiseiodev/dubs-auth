@@ -10,7 +10,7 @@ export interface SignupCardProps {
 }
 
 export const SignupCard = ({ onSubmit }: SignupCardProps) => (
-  <Card className="mx-auto w-full max-w-md">
+  <Card className='mx-auto w-full max-w-md'>
     <CardHeader>
       <CardTitle>Create your account</CardTitle>
     </CardHeader>

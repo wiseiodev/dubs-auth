@@ -8,7 +8,7 @@ export interface BillingCardProps {
 }
 
 export const BillingCard = ({ onManageBilling }: BillingCardProps) => (
-  <Card className="w-full">
+  <Card className='w-full'>
     <CardHeader>
       <CardTitle>Billing</CardTitle>
     </CardHeader>

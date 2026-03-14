@@ -34,7 +34,7 @@ export const DubsManageBillingButton = ({
       )}
       disabled={isPending}
       onClick={handleClick}
-      type="button"
+      type='button'
     >
       {isPending ? 'Redirecting...' : label}
     </button>
