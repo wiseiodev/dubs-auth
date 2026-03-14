@@ -1,3 +1,9 @@
+## [0.4.0](https://github.com/wiseiodev/dubs-auth/compare/v0.3.0...v0.4.0) (2026-03-14)
+
+### Features
+
+* **example:** add next app router integration example ([691378d](https://github.com/wiseiodev/dubs-auth/commit/691378d74bce9cd9d83d952ca136e9141da9338b))
+
 ## [0.3.0](https://github.com/wiseiodev/dubs-auth/compare/v0.2.3...v0.3.0) (2026-03-14)
 
 ### Features
