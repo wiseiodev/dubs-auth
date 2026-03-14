@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/wiseiodev/dubs-auth/compare/v0.2.0...v0.2.1) (2026-03-14)
+
+### Bug Fixes
+
+* **release:** format lockfile publish check for biome ([9c44a42](https://github.com/wiseiodev/dubs-auth/commit/9c44a4263bf156ce17a78409bf27b1d181569b89))
+* **release:** make lockfile check non-mutating ([21445be](https://github.com/wiseiodev/dubs-auth/commit/21445be2ccd18ecc8411a4f39a0ab7a3d5b0d5c3))
+
 ## [0.2.0](https://github.com/wiseiodev/dubs-auth/compare/v0.1.0...v0.2.0) (2026-03-14)
 
 ### Features
